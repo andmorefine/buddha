@@ -9,12 +9,6 @@
 ## 環境構築
 golangおよびdockerは既にインストール済みであることを想定
 
-リポジトリのクローン
-
-```
-$ git clone git@github.com:tonouchi510/goa2-sample.git
-```
-
 ライブラリのインストール
 ```
 $ make install
