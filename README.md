@@ -9,6 +9,12 @@
 ## 環境構築
 golangおよびdockerは既にインストール済みであることを想定
 
+macの場合
+```
+$ brew install dep
+$ brew upgrade dep
+```
+
 ライブラリのインストール
 ```
 $ make install
