@@ -1,26 +1,40 @@
-# buddha
-goa api
+# goa2-sample
 
-```console
+### 使用技術
+- goa v2
+- mysql
+- swagger-ui
+- viron
+
+## 環境構築
+golangおよびdockerは既にインストール済みであることを想定
+
+リポジトリのクローン
+
+```
+$ git clone git@github.com:tonouchi510/goa2-sample.git
+```
+
+ライブラリのインストール
+```
 $ make install
-$ make gen
-$ make run
 ```
 
-- [http://localhost:8080/](http://localhost:8080/)
-- [Swagger UI](http://localhost:8080/swaggerui/index.html)
+## 開発
+- designディレクトリ以下に新しいAPIデザインを追加
+- ```$ make goagen```でコード自動生成
+- 新しく作られたコントローラの雛形を元にビジネスロジックを追加
+- ```$ make run```でビルド&実行
 
-## change package name
-
-1.Makefile update
-
-```
-BEFORE:=github.com/pei0804/goa-stater/normal
-AFTER:=github.com/path/to <---change
-```
-
-2.Run
+## 関連サーバ起動
+mysql、swagger-ui、vironはそれぞれ別個のdockerコンテナで起動する
 
 ```
-$ make change-package
+$ make docker-build
+$ make docker-up
+```
+
+コンテナの停止
+```
+$ make docker-rm
 ```

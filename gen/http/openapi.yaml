@@ -1,0 +1,1479 @@
+swagger: "2.0"
+info:
+  title: SampleAPI
+  description: goa2 sample code.
+  contact:
+    name: tonouchi510
+    email: tonouchi27@gmail.com
+    url: https://github.com/tonouchi510/goa2-sample/issues
+  version: "1.0"
+host: localhost:8000
+consumes:
+- application/json
+- application/xml
+- application/gob
+produces:
+- application/json
+- application/xml
+- application/gob
+paths:
+  /api/v1/stats/user_number:
+    get:
+      tags:
+      - stats
+      summary: user_number stats
+      description: Users Information
+      operationId: stats#user_number
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            $ref: '#/definitions/Statsuser_number_response_body'
+      schemes:
+      - http
+  /api/v1/users:
+    get:
+      tags:
+      - users
+      summary: list users
+      description: List all stored users
+      operationId: users#list
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            $ref: '#/definitions/UsersStoredUserResponseCollection'
+      schemes:
+      - http
+    post:
+      tags:
+      - users
+      summary: add users
+      description: Add new user and return its ID.
+      operationId: users#add
+      parameters:
+      - name: AddRequestBody
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/UsersAddRequestBody'
+          required:
+          - name
+          - email
+      responses:
+        "201":
+          description: Created response.
+          schema:
+            type: integer
+            format: int64
+      schemes:
+      - http
+  /api/v1/users/{id}:
+    get:
+      tags:
+      - users
+      summary: show users
+      description: Show user by ID
+      operationId: users#show
+      parameters:
+      - name: id
+        in: path
+        description: ID of user to show
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            $ref: '#/definitions/UsersShowResponseBody'
+        "404":
+          description: Not Found response.
+          schema:
+            $ref: '#/definitions/UsersShowNotFoundResponseBody'
+            required:
+            - message
+            - id
+      schemes:
+      - http
+    put:
+      tags:
+      - users
+      summary: update users
+      description: Update user item.
+      operationId: users#update
+      parameters:
+      - name: id
+        in: path
+        description: ID of user to show
+        required: true
+        type: integer
+        format: int64
+      - name: UpdateRequestBody
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/UsersUpdateRequestBody'
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            $ref: '#/definitions/UsersUpdateResponseBody'
+      schemes:
+      - http
+    delete:
+      tags:
+      - users
+      summary: remove users
+      description: Remove user from storage
+      operationId: users#remove
+      parameters:
+      - name: id
+        in: path
+        description: ID of user to remove
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "204":
+          description: No Content response.
+      schemes:
+      - http
+  /js/*filepath:
+    get:
+      summary: Download ../../submodule/viron/public/js/
+      operationId: viron#/js/*filepath
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+  /signin:
+    post:
+      tags:
+      - secured
+      summary: signin secured
+      description: Creates a valid JWT
+      operationId: secured#signin
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            $ref: '#/definitions/SecuredSigninResponseBody'
+        "401":
+          description: Unauthorized response.
+          schema:
+            $ref: '#/definitions/SecuredSigninUnauthorizedResponseBody'
+      schemes:
+      - http
+      security:
+      - basic: []
+  /v1/swagger.json:
+    get:
+      summary: Download ../../gen/http/openapi.json
+      description: JSON document containing the API swagger definition
+      operationId: swagger#/v1/swagger.json
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+  /viron:
+    get:
+      tags:
+      - viron
+      summary: viron_menu viron
+      description: Add viron_menu
+      operationId: viron#viron_menu
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            $ref: '#/definitions/Vironviron_menu_response_body'
+      schemes:
+      - http
+  /viron_authtype:
+    get:
+      tags:
+      - viron
+      summary: authtype viron
+      description: Add viron_authtype
+      operationId: viron#authtype
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            $ref: '#/definitions/VironViron_authtypeResponseCollection'
+      schemes:
+      - http
+definitions:
+  SecuredSigninResponseBody:
+    title: 'Mediatype identifier: application/vnd.goa.jwt; view=default'
+    type: object
+    properties:
+      Authorization:
+        type: string
+        description: New Jwt token
+        example: Vero pariatur quia similique aut libero.
+    description: SigninResponseBody result type (default view)
+    example:
+      Authorization: Eaque ratione sint quibusdam animi.
+    required:
+    - Authorization
+  SecuredSigninUnauthorizedResponseBody:
+    title: SecuredSigninUnauthorizedResponseBody
+    type: string
+    description: Credentials are invalid
+    example: Sit vel velit.
+  StatsGuideTypeResponseBody:
+    title: StatsGuideTypeResponseBody
+    type: object
+    properties:
+      x:
+        $ref: '#/definitions/StatsLabelTypeResponseBody'
+      "y":
+        $ref: '#/definitions/StatsLabelTypeResponseBody'
+    example:
+      x:
+        label: Qui modi rem.
+      "y":
+        label: Qui modi rem.
+  StatsLabelTypeResponseBody:
+    title: StatsLabelTypeResponseBody
+    type: object
+    properties:
+      label:
+        type: string
+        example: Similique voluptatem fuga praesentium.
+    example:
+      label: Explicabo eos expedita.
+    required:
+    - label
+  Statsuser_number_response_body:
+    title: 'Mediatype identifier: application/vnd.statsuser+json; view=default'
+    type: object
+    properties:
+      color:
+        type: string
+        description: ドットの色分けに使用するkey
+        example: Dolor qui perspiciatis dolores voluptatum.
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/dataResponseBody'
+        description: グラフデータ
+        example:
+        - key: Voluptatem earum nulla.
+          value: Sed nulla omnis.
+        - key: Voluptatem earum nulla.
+          value: Sed nulla omnis.
+        - key: Voluptatem earum nulla.
+          value: Sed nulla omnis.
+        - key: Voluptatem earum nulla.
+          value: Sed nulla omnis.
+      guide:
+        $ref: '#/definitions/StatsGuideTypeResponseBody'
+      size:
+        type: string
+        description: ドットの大きさに使用するkey
+        example: Ut minus inventore esse ea nemo.
+      x:
+        type: string
+        description: X軸に使用するkey
+        example: Ducimus provident exercitationem excepturi necessitatibus quo hic.
+      "y":
+        type: string
+        description: Y軸に使用するkey
+        example: Ad deserunt.
+    description: user_number_response_body result type (default view)
+    example:
+      color: Distinctio eius id non quidem quasi.
+      data:
+      - key: Voluptatem earum nulla.
+        value: Sed nulla omnis.
+      - key: Voluptatem earum nulla.
+        value: Sed nulla omnis.
+      - key: Voluptatem earum nulla.
+        value: Sed nulla omnis.
+      - key: Voluptatem earum nulla.
+        value: Sed nulla omnis.
+      guide:
+        x:
+          label: Qui modi rem.
+        "y":
+          label: Qui modi rem.
+      size: Quia beatae sequi nihil.
+      x: Totam odit quia.
+      "y": Repellendus quam dolores ea id.
+    required:
+    - data
+    - x
+    - "y"
+    - guide
+  StoredUserResponse:
+    title: 'Mediatype identifier: application/vnd.goa2-sample.stored-user; view=default'
+    type: object
+    properties:
+      email:
+        type: string
+        description: Email of user
+        example: Vero voluptas.
+      id:
+        type: integer
+        description: ID is the unique id of the user.
+        example: 123
+        format: int64
+      name:
+        type: string
+        description: Name of user
+        example: hoge fuga
+        maxLength: 30
+    description: A StoredUser describes a user access by the storage service. (default
+      view)
+    example:
+      email: Alias explicabo atque.
+      id: 123
+      name: hoge fuga
+    required:
+    - id
+    - name
+    - email
+  UsersAddRequestBody:
+    title: UsersAddRequestBody
+    type: object
+    properties:
+      email:
+        type: string
+        description: Email of user
+        example: Accusamus aut quas eum natus.
+      name:
+        type: string
+        description: Name of user
+        example: hoge fuga
+        maxLength: 30
+    example:
+      email: Delectus molestiae nihil.
+      name: hoge fuga
+    required:
+    - name
+    - email
+  UsersShowNotFoundResponseBody:
+    title: UsersShowNotFoundResponseBody
+    type: object
+    properties:
+      id:
+        type: integer
+        description: ID of missing user
+        example: 1409182947344963041
+        format: int64
+      message:
+        type: string
+        description: Message of error
+        example: user 1 not found
+    description: user not found
+    example:
+      id: 3809958565687440347
+      message: user 1 not found
+    required:
+    - message
+    - id
+  UsersShowResponseBody:
+    title: 'Mediatype identifier: application/vnd.goa2-sample.stored-user; view=default'
+    type: object
+    properties:
+      email:
+        type: string
+        description: Email of user
+        example: Dolorem hic repellat quia officiis aliquid.
+      id:
+        type: integer
+        description: ID is the unique id of the user.
+        example: 123
+        format: int64
+      name:
+        type: string
+        description: Name of user
+        example: hoge fuga
+        maxLength: 30
+    description: ShowResponseBody result type (default view)
+    example:
+      email: Deserunt mollitia reprehenderit.
+      id: 123
+      name: hoge fuga
+    required:
+    - id
+    - name
+    - email
+  UsersStoredUserResponseCollection:
+    title: 'Mediatype identifier: application/vnd.goa2-sample.stored-user; type=collection;
+      view=default'
+    type: array
+    items:
+      $ref: '#/definitions/StoredUserResponse'
+    description: ListResponseBody is the result type for an array of StoredUserResponse
+      (default view)
+    example:
+    - email: Exercitationem voluptatibus molestias.
+      id: 123
+      name: hoge fuga
+    - email: Exercitationem voluptatibus molestias.
+      id: 123
+      name: hoge fuga
+    - email: Exercitationem voluptatibus molestias.
+      id: 123
+      name: hoge fuga
+    - email: Exercitationem voluptatibus molestias.
+      id: 123
+      name: hoge fuga
+  UsersUpdateRequestBody:
+    title: UsersUpdateRequestBody
+    type: object
+    properties:
+      email:
+        type: string
+        description: Email of user
+        example: Deleniti delectus necessitatibus iure.
+      name:
+        type: string
+        description: Name of user
+        example: Dolores dicta.
+    example:
+      email: Sit enim voluptatem possimus autem inventore velit.
+      name: Magni consectetur deleniti et.
+  UsersUpdateResponseBody:
+    title: 'Mediatype identifier: application/vnd.goa2-sample.stored-user; view=default'
+    type: object
+    properties:
+      email:
+        type: string
+        description: Email of user
+        example: Assumenda autem.
+      id:
+        type: integer
+        description: ID is the unique id of the user.
+        example: 123
+        format: int64
+      name:
+        type: string
+        description: Name of user
+        example: hoge fuga
+        maxLength: 30
+    description: UpdateResponseBody result type (default view)
+    example:
+      email: Cum adipisci unde.
+      id: 123
+      name: hoge fuga
+    required:
+    - id
+    - name
+    - email
+  Viron_apiResponseBody:
+    title: 'Mediatype identifier: vnd.application/viron_api+json; view=default'
+    type: object
+    properties:
+      method:
+        type: string
+        example: Ad ut minima rerum.
+      path:
+        type: string
+        example: Illo dolor.
+    example:
+      method: At occaecati aut rerum impedit.
+      path: Possimus eum reprehenderit.
+    required:
+    - method
+    - path
+  Viron_authtypeResponse:
+    title: 'Mediatype identifier: vnd.application/viron_authtype+json; view=default'
+    type: object
+    properties:
+      method:
+        type: string
+        description: request method to submit this auth
+        example: Laborum accusantium repellendus cum.
+      provider:
+        type: string
+        description: provider name
+        example: Quis doloribus placeat delectus sequi cumque.
+      type:
+        type: string
+        description: type name
+        example: Quod fuga corporis atque.
+      url:
+        type: string
+        description: url
+        example: Velit maxime possimus voluptates eos qui.
+    description: Viron_authtypeResponse result type (default view)
+    example:
+      method: Fugit aut voluptate eum culpa earum pariatur.
+      provider: Iste fugiat.
+      type: Ut inventore quia quam laboriosam iure excepturi.
+      url: Fugiat molestias architecto facere voluptatem.
+    required:
+    - type
+    - provider
+    - url
+    - method
+  Viron_componentResponseBody:
+    title: 'Mediatype identifier: vnd.application/viron_component+json; view=default'
+    type: object
+    properties:
+      actions:
+        type: array
+        items:
+          type: string
+          example: Sunt quod.
+        example:
+        - Ut accusantium officia.
+        - Ut ut dolores asperiores est.
+        - Et vel quia officia ex.
+      api:
+        $ref: '#/definitions/Viron_apiResponseBody'
+      auto_refresh_sec:
+        type: integer
+        example: 1032020777
+        format: int32
+      name:
+        type: string
+        example: Similique optio.
+      pagination:
+        type: boolean
+        example: true
+      primary:
+        type: string
+        example: Labore inventore et.
+      query:
+        type: array
+        items:
+          $ref: '#/definitions/Viron_queryResponseBody'
+        example:
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+      style:
+        type: string
+        example: graph-stacked-area
+        enum:
+        - number
+        - table
+        - graph-bar
+        - graph-scatterplot
+        - graph-line
+        - graph-horizontal-bar
+        - graph-stacked-bar
+        - graph-horizontal-stacked-bar
+        - graph-stacked-area
+      table_labels:
+        type: array
+        items:
+          type: string
+          example: Voluptatem animi iusto aut repellendus architecto accusamus.
+        example:
+        - Ratione libero earum corporis quibusdam consequatur.
+        - Hic culpa.
+        - Sapiente est similique.
+      unit:
+        type: string
+        example: Reprehenderit corporis quia.
+    example:
+      actions:
+      - Ut beatae eaque est quis nisi nihil.
+      - Rerum sunt aspernatur.
+      api:
+        method: Nisi quia optio quae.
+        path: Sapiente dolorem et temporibus sed.
+      auto_refresh_sec: 308021576
+      name: Labore ipsam impedit quia modi.
+      pagination: false
+      primary: Vitae sed.
+      query:
+      - key: Nulla adipisci.
+        type: Nisi culpa et at deserunt aut.
+      - key: Nulla adipisci.
+        type: Nisi culpa et at deserunt aut.
+      style: graph-line
+      table_labels:
+      - Sed placeat eius maiores voluptas.
+      - Sapiente earum.
+      - Dolor ea magni earum pariatur.
+      - Dolore iusto tempora quaerat.
+      unit: Sed similique.
+    required:
+    - name
+    - style
+    - api
+  Viron_pageResponseBody:
+    title: 'Mediatype identifier: vnd.application/viron_page+json; view=default'
+    type: object
+    properties:
+      components:
+        type: array
+        items:
+          $ref: '#/definitions/Viron_componentResponseBody'
+        example:
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+      group:
+        type: string
+        example: Aliquam odit non sint et ratione neque.
+      id:
+        type: string
+        example: Nihil aut laboriosam.
+      name:
+        type: string
+        example: Natus voluptas est quis.
+      section:
+        type: string
+        example: Quia amet reiciendis error.
+    example:
+      components:
+      - actions:
+        - Tenetur voluptatem.
+        - Mollitia sapiente doloremque molestiae.
+        api:
+          method: Nisi quia optio quae.
+          path: Sapiente dolorem et temporibus sed.
+        auto_refresh_sec: 1595381535
+        name: Atque reiciendis quia omnis nisi.
+        pagination: false
+        primary: Dolorem quos pariatur.
+        query:
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+        style: table
+        table_labels:
+        - Itaque consequuntur voluptatum ab iure.
+        - Quod porro beatae eum eius itaque.
+        - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+        - Voluptatem rerum sed suscipit aut.
+        unit: Dicta voluptatem.
+      - actions:
+        - Tenetur voluptatem.
+        - Mollitia sapiente doloremque molestiae.
+        api:
+          method: Nisi quia optio quae.
+          path: Sapiente dolorem et temporibus sed.
+        auto_refresh_sec: 1595381535
+        name: Atque reiciendis quia omnis nisi.
+        pagination: false
+        primary: Dolorem quos pariatur.
+        query:
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+        style: table
+        table_labels:
+        - Itaque consequuntur voluptatum ab iure.
+        - Quod porro beatae eum eius itaque.
+        - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+        - Voluptatem rerum sed suscipit aut.
+        unit: Dicta voluptatem.
+      - actions:
+        - Tenetur voluptatem.
+        - Mollitia sapiente doloremque molestiae.
+        api:
+          method: Nisi quia optio quae.
+          path: Sapiente dolorem et temporibus sed.
+        auto_refresh_sec: 1595381535
+        name: Atque reiciendis quia omnis nisi.
+        pagination: false
+        primary: Dolorem quos pariatur.
+        query:
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+        - key: Nulla adipisci.
+          type: Nisi culpa et at deserunt aut.
+        style: table
+        table_labels:
+        - Itaque consequuntur voluptatum ab iure.
+        - Quod porro beatae eum eius itaque.
+        - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+        - Voluptatem rerum sed suscipit aut.
+        unit: Dicta voluptatem.
+      group: Repellat ipsum distinctio.
+      id: Minus non nemo.
+      name: Placeat omnis quasi odit commodi voluptate.
+      section: Temporibus culpa ut.
+    required:
+    - id
+    - name
+    - section
+    - components
+  Viron_queryResponseBody:
+    title: 'Mediatype identifier: vnd.application/viron_query+json; view=default'
+    type: object
+    properties:
+      key:
+        type: string
+        example: Delectus et quis dolor ut eum.
+      type:
+        type: string
+        example: Explicabo repellendus voluptatem mollitia ullam.
+    example:
+      key: Ut in nihil officia.
+      type: Ab amet quibusdam non quod ducimus laboriosam.
+    required:
+    - key
+    - type
+  VironViron_authtypeResponseCollection:
+    title: 'Mediatype identifier: vnd.application/viron_authtype+json; type=collection;
+      view=default'
+    type: array
+    items:
+      $ref: '#/definitions/Viron_authtypeResponse'
+    description: AuthtypeResponseBody is the result type for an array of Viron_authtypeResponse
+      (default view)
+    example:
+    - method: Sit fuga.
+      provider: Accusamus quia doloremque odit quidem fugit in.
+      type: Ducimus et quia.
+      url: Dolorum delectus adipisci error est nobis.
+    - method: Sit fuga.
+      provider: Accusamus quia doloremque odit quidem fugit in.
+      type: Ducimus et quia.
+      url: Dolorum delectus adipisci error est nobis.
+    - method: Sit fuga.
+      provider: Accusamus quia doloremque odit quidem fugit in.
+      type: Ducimus et quia.
+      url: Dolorum delectus adipisci error est nobis.
+  Vironviron_menu_response_body:
+    title: 'Mediatype identifier: vnd.application/viron_menu+json; view=default'
+    type: object
+    properties:
+      color:
+        type: string
+        example: blue
+        enum:
+        - purple
+        - blue
+        - green
+        - yellow
+        - red
+        - gray
+        - black
+        - white
+      name:
+        type: string
+        example: Ea adipisci.
+      pages:
+        type: array
+        items:
+          $ref: '#/definitions/Viron_pageResponseBody'
+        example:
+        - components:
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          group: Eligendi praesentium consequatur aperiam sint.
+          id: Ea quia mollitia consequuntur consequatur velit non.
+          name: Rerum consequatur reiciendis aut aut.
+          section: Sint quasi ut neque est.
+        - components:
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          group: Eligendi praesentium consequatur aperiam sint.
+          id: Ea quia mollitia consequuntur consequatur velit non.
+          name: Rerum consequatur reiciendis aut aut.
+          section: Sint quasi ut neque est.
+        - components:
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          - actions:
+            - Tenetur voluptatem.
+            - Mollitia sapiente doloremque molestiae.
+            api:
+              method: Nisi quia optio quae.
+              path: Sapiente dolorem et temporibus sed.
+            auto_refresh_sec: 1595381535
+            name: Atque reiciendis quia omnis nisi.
+            pagination: false
+            primary: Dolorem quos pariatur.
+            query:
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            - key: Nulla adipisci.
+              type: Nisi culpa et at deserunt aut.
+            style: table
+            table_labels:
+            - Itaque consequuntur voluptatum ab iure.
+            - Quod porro beatae eum eius itaque.
+            - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+            - Voluptatem rerum sed suscipit aut.
+            unit: Dicta voluptatem.
+          group: Eligendi praesentium consequatur aperiam sint.
+          id: Ea quia mollitia consequuntur consequatur velit non.
+          name: Rerum consequatur reiciendis aut aut.
+          section: Sint quasi ut neque est.
+      tags:
+        type: array
+        items:
+          type: string
+          example: Cum eaque debitis quo sit eius.
+        example:
+        - Tenetur ut doloribus natus harum tenetur.
+        - Excepturi magni explicabo eaque est est.
+        - Ratione quia maxime consectetur.
+      theme:
+        type: string
+        example: terminal
+        enum:
+        - standard
+        - midnight
+        - terminal
+      thumbnail:
+        type: string
+        example: Quas officiis voluptas error et.
+    description: viron_menu_response_body result type (default view)
+    example:
+      color: gray
+      name: Mollitia quasi.
+      pages:
+      - components:
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        group: Eligendi praesentium consequatur aperiam sint.
+        id: Ea quia mollitia consequuntur consequatur velit non.
+        name: Rerum consequatur reiciendis aut aut.
+        section: Sint quasi ut neque est.
+      - components:
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        group: Eligendi praesentium consequatur aperiam sint.
+        id: Ea quia mollitia consequuntur consequatur velit non.
+        name: Rerum consequatur reiciendis aut aut.
+        section: Sint quasi ut neque est.
+      - components:
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        - actions:
+          - Tenetur voluptatem.
+          - Mollitia sapiente doloremque molestiae.
+          api:
+            method: Nisi quia optio quae.
+            path: Sapiente dolorem et temporibus sed.
+          auto_refresh_sec: 1595381535
+          name: Atque reiciendis quia omnis nisi.
+          pagination: false
+          primary: Dolorem quos pariatur.
+          query:
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          - key: Nulla adipisci.
+            type: Nisi culpa et at deserunt aut.
+          style: table
+          table_labels:
+          - Itaque consequuntur voluptatum ab iure.
+          - Quod porro beatae eum eius itaque.
+          - Fugit et omnis voluptatibus quibusdam necessitatibus quae.
+          - Voluptatem rerum sed suscipit aut.
+          unit: Dicta voluptatem.
+        group: Eligendi praesentium consequatur aperiam sint.
+        id: Ea quia mollitia consequuntur consequatur velit non.
+        name: Rerum consequatur reiciendis aut aut.
+        section: Sint quasi ut neque est.
+      tags:
+      - Reiciendis aut cum.
+      - Quis et reprehenderit consequuntur voluptatem.
+      - Nostrum qui.
+      - Aut id consequatur praesentium ratione iusto cum.
+      theme: midnight
+      thumbnail: Iure iure facere totam a consequuntur.
+    required:
+    - name
+    - pages
+  dataResponseBody:
+    title: dataResponseBody
+    type: object
+    properties:
+      key:
+        type: string
+        example: Ea dicta maiores id.
+      value:
+        example: Hic qui nemo eum quas inventore nulla.
+    example:
+      key: Commodi qui eum porro.
+      value: At molestias dolor doloremque repudiandae facilis facilis.
+securityDefinitions:
+  basic:
+    type: basic
+    description: Basic authentication used to authenticate security principal during
+      signin
+  jwt:
+    type: apiKey
+    description: |-
+      Secures endpoint by requiring a valid JWT token retrieved via the signin endpoint. Supports scopes "api:read" and "api:write".
+      **Security Scopes**:
+        * `api:read`: Read-only access
+        * `api:write`: Read and write access
+    name: Authorization
+    in: header
+externalDocs:
+  description: wiki
+  url: https://github.com/tonouchi510/goa2-sample/wiki
