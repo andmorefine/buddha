@@ -2,3 +2,5 @@
 cmd/goa2_sample/goa2_sample
 vendor/*
 bak/*
+
+.DS_Store
