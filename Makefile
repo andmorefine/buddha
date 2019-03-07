@@ -1,6 +1,6 @@
 APP_NAME := goa2_sample
-GOP := /Users/masato.tonochi/go/my-project
-REPO := github.com/tonouchi510/goa2-sample
+GOP := /Users/andmorefine/go/src/github.com/andmorefine/buddha
+REPO := github.com/andmorefine/buddha
 BACKUP := bak
 ARG = db
 
