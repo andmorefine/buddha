@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	cli "github.com/andmorefine/buddha/gen/http/cli/goa2_sample"
+	cli "github.com/andmorefine/buddha/gen/http/cli/buddha"
 	goahttp "goa.design/goa/http"
 )
 

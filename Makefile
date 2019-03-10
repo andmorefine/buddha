@@ -1,4 +1,4 @@
-APP_NAME := goa2_sample
+APP_NAME := buddha
 GOP := /Users/andmorefine/go/src/github.com/andmorefine/buddha
 REPO := github.com/andmorefine/buddha
 BACKUP := bak
