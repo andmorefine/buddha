@@ -3,7 +3,7 @@
 // swagger HTTP server
 //
 // Command:
-// $ goa gen github.com/andmorefine/goa2-sample/design
+// $ goa gen github.com/andmorefine/buddha/design
 
 package server
 
@@ -12,7 +12,7 @@ import (
 	"net/http"
 	"regexp"
 
-	swagger "github.com/andmorefine/goa2-sample/gen/swagger"
+	swagger "github.com/andmorefine/buddha/gen/swagger"
 	goahttp "goa.design/goa/http"
 	"goa.design/plugins/cors"
 )

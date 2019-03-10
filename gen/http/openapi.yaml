@@ -4,8 +4,8 @@ info:
   description: goa2 sample code.
   contact:
     name: andmorefine
-    email: tonouchi27@gmail.com
-    url: https://github.com/andmorefine/goa2-sample/issues
+    email: andmorefine@gmail.com
+    url: https://github.com/andmorefine/buddha/issues
   version: "1.0"
 host: localhost:8000
 consumes:
@@ -315,7 +315,7 @@ definitions:
     - "y"
     - guide
   StoredUserResponse:
-    title: 'Mediatype identifier: application/vnd.goa2-sample.stored-user; view=default'
+    title: 'Mediatype identifier: application/vnd.buddha.stored-user; view=default'
     type: object
     properties:
       email:
@@ -382,7 +382,7 @@ definitions:
     - message
     - id
   UsersShowResponseBody:
-    title: 'Mediatype identifier: application/vnd.goa2-sample.stored-user; view=default'
+    title: 'Mediatype identifier: application/vnd.buddha.stored-user; view=default'
     type: object
     properties:
       email:
@@ -409,7 +409,7 @@ definitions:
     - name
     - email
   UsersStoredUserResponseCollection:
-    title: 'Mediatype identifier: application/vnd.goa2-sample.stored-user; type=collection;
+    title: 'Mediatype identifier: application/vnd.buddha.stored-user; type=collection;
       view=default'
     type: array
     items:
@@ -445,7 +445,7 @@ definitions:
       email: Sit enim voluptatem possimus autem inventore velit.
       name: Magni consectetur deleniti et.
   UsersUpdateResponseBody:
-    title: 'Mediatype identifier: application/vnd.goa2-sample.stored-user; view=default'
+    title: 'Mediatype identifier: application/vnd.buddha.stored-user; view=default'
     type: object
     properties:
       email:
@@ -1476,4 +1476,4 @@ securityDefinitions:
     in: header
 externalDocs:
   description: wiki
-  url: https://github.com/andmorefine/goa2-sample/wiki
+  url: https://github.com/andmorefine/buddha/wiki

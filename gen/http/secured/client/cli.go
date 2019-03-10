@@ -3,12 +3,12 @@
 // secured HTTP client CLI support package
 //
 // Command:
-// $ goa gen github.com/andmorefine/goa2-sample/design
+// $ goa gen github.com/andmorefine/buddha/design
 
 package client
 
 import (
-	secured "github.com/andmorefine/goa2-sample/gen/secured"
+	secured "github.com/andmorefine/buddha/gen/secured"
 )
 
 // BuildSigninPayload builds the payload for the secured signin endpoint from

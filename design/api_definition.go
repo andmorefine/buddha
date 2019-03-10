@@ -6,18 +6,18 @@ import (
 )
 
 // API describes the global properties of the API server.
-var _ = API("goa2-sample", func() {
+var _ = API("buddha", func() {
 	Title("SampleAPI")
 	Description("goa2 sample code.")
 	Version("1.0")
 	Contact(func() {
 		Name("andmorefine")
-		Email("tonouchi27@gmail.com")
-		URL("https://github.com/andmorefine/goa2-sample/issues")
+		Email("andmorefine@gmail.com")
+		URL("https://github.com/andmorefine/buddha/issues")
 	})
 	Docs(func() {
 		Description("wiki")
-		URL("https://github.com/andmorefine/goa2-sample/wiki")
+		URL("https://github.com/andmorefine/buddha/wiki")
 	})
 
 	cors.Origin("/.*localhost.*/", func() {
@@ -26,7 +26,7 @@ var _ = API("goa2-sample", func() {
 		cors.MaxAge(600)
 	})
 
-	Server("goa2-sample", func() {
+	Server("buddha", func() {
 		Services("users", "swagger", "secured", "viron", "stats")
 		Host("localhost", func() {
 			Description("development host")

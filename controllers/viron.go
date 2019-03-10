@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/andmorefine/goa2-sample/gen/viron"
+	"github.com/andmorefine/buddha/gen/viron"
 )
 
 // viron service example implementation.
@@ -50,7 +50,7 @@ func (s *vironSvc) VironMenu(ctx context.Context) (res *viron.VironMenu, err err
 	pagenation := true
 
 	res = &viron.VironMenu{
-		Name: "goa2-sample Admin Screen",
+		Name: "buddha Admin Screen",
 		Tags: []string{
 			"local",
 		},

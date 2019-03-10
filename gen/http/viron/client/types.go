@@ -3,12 +3,12 @@
 // viron HTTP client types
 //
 // Command:
-// $ goa gen github.com/andmorefine/goa2-sample/design
+// $ goa gen github.com/andmorefine/buddha/design
 
 package client
 
 import (
-	vironviews "github.com/andmorefine/goa2-sample/gen/viron/views"
+	vironviews "github.com/andmorefine/buddha/gen/viron/views"
 	goa "goa.design/goa"
 )
 

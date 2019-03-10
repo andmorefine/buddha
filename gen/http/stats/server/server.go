@@ -3,7 +3,7 @@
 // stats HTTP server
 //
 // Command:
-// $ goa gen github.com/andmorefine/goa2-sample/design
+// $ goa gen github.com/andmorefine/buddha/design
 
 package server
 
@@ -12,7 +12,7 @@ import (
 	"net/http"
 	"regexp"
 
-	stats "github.com/andmorefine/goa2-sample/gen/stats"
+	stats "github.com/andmorefine/buddha/gen/stats"
 	goa "goa.design/goa"
 	goahttp "goa.design/goa/http"
 	"goa.design/plugins/cors"

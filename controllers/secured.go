@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	secured "github.com/andmorefine/goa2-sample/gen/secured"
+	secured "github.com/andmorefine/buddha/gen/secured"
 )
 
 // secured service example implementation.

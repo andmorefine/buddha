@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	cli "github.com/andmorefine/goa2-sample/gen/http/cli/goa2_sample"
+	cli "github.com/andmorefine/buddha/gen/http/cli/goa2_sample"
 	goahttp "goa.design/goa/http"
 )
 
@@ -87,7 +87,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintf(os.Stderr, `%s is a command line client for the goa2-sample server.
+	fmt.Fprintf(os.Stderr, `%s is a command line client for the buddha server.
 
 Usage:
     %s [-url URL][-timeout SECONDS][-verbose|-v] SERVICE ENDPOINT [flags]

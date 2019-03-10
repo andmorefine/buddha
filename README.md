@@ -1,4 +1,4 @@
-# goa2-sample
+# buddha
 
 ### 使用技術
 - goa v2

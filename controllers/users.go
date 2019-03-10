@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/andmorefine/goa2-sample/gen/users"
+	"github.com/andmorefine/buddha/gen/users"
 )
 
 // users service example implementation.

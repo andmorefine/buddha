@@ -3,7 +3,7 @@
 // secured HTTP server encoders and decoders
 //
 // Command:
-// $ goa gen github.com/andmorefine/goa2-sample/design
+// $ goa gen github.com/andmorefine/buddha/design
 
 package server
 
@@ -11,8 +11,8 @@ import (
 	"context"
 	"net/http"
 
-	secured "github.com/andmorefine/goa2-sample/gen/secured"
-	securedviews "github.com/andmorefine/goa2-sample/gen/secured/views"
+	secured "github.com/andmorefine/buddha/gen/secured"
+	securedviews "github.com/andmorefine/buddha/gen/secured/views"
 	goa "goa.design/goa"
 	goahttp "goa.design/goa/http"
 )

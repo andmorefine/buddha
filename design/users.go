@@ -76,7 +76,7 @@ var _ = Service("users", func() {
 })
 
 // レスポンスデータの定義
-var StoredUser = ResultType("application/vnd.goa2-sample.stored-user", func() {
+var StoredUser = ResultType("application/vnd.buddha.stored-user", func() {
 	Description("A StoredUser describes a user access by the storage service.")
 	Reference(User)
 	TypeName("StoredUser")

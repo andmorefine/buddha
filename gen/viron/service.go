@@ -3,14 +3,14 @@
 // viron service
 //
 // Command:
-// $ goa gen github.com/andmorefine/goa2-sample/design
+// $ goa gen github.com/andmorefine/buddha/design
 
 package viron
 
 import (
 	"context"
 
-	vironviews "github.com/andmorefine/goa2-sample/gen/viron/views"
+	vironviews "github.com/andmorefine/buddha/gen/viron/views"
 )
 
 // Service is the viron service interface.

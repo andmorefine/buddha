@@ -3,13 +3,13 @@
 // secured HTTP client types
 //
 // Command:
-// $ goa gen github.com/andmorefine/goa2-sample/design
+// $ goa gen github.com/andmorefine/buddha/design
 
 package client
 
 import (
-	secured "github.com/andmorefine/goa2-sample/gen/secured"
-	securedviews "github.com/andmorefine/goa2-sample/gen/secured/views"
+	secured "github.com/andmorefine/buddha/gen/secured"
+	securedviews "github.com/andmorefine/buddha/gen/secured/views"
 )
 
 // SigninResponseBody is the type of the "secured" service "signin" endpoint

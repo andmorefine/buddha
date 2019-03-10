@@ -3,7 +3,7 @@
 // viron endpoints
 //
 // Command:
-// $ goa gen github.com/andmorefine/goa2-sample/design
+// $ goa gen github.com/andmorefine/buddha/design
 
 package viron
 

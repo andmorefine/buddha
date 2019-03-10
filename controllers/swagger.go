@@ -3,7 +3,7 @@ package controllers
 import (
 	"log"
 
-	swagger "github.com/andmorefine/goa2-sample/gen/swagger"
+	swagger "github.com/andmorefine/buddha/gen/swagger"
 )
 
 // swagger service example implementation.
