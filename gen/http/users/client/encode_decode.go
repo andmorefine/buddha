@@ -3,7 +3,7 @@
 // users HTTP client encoders and decoders
 //
 // Command:
-// $ goa gen github.com/tonouchi510/goa2-sample/design
+// $ goa gen github.com/andmorefine/goa2-sample/design
 
 package client
 
@@ -14,8 +14,8 @@ import (
 	"net/http"
 	"net/url"
 
-	users "github.com/tonouchi510/goa2-sample/gen/users"
-	usersviews "github.com/tonouchi510/goa2-sample/gen/users/views"
+	users "github.com/andmorefine/goa2-sample/gen/users"
+	usersviews "github.com/andmorefine/goa2-sample/gen/users/views"
 	goahttp "goa.design/goa/http"
 )
 

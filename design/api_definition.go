@@ -11,13 +11,13 @@ var _ = API("goa2-sample", func() {
 	Description("goa2 sample code.")
 	Version("1.0")
 	Contact(func() {
-		Name("tonouchi510")
+		Name("andmorefine")
 		Email("tonouchi27@gmail.com")
-		URL("https://github.com/tonouchi510/goa2-sample/issues")
+		URL("https://github.com/andmorefine/goa2-sample/issues")
 	})
 	Docs(func() {
 		Description("wiki")
-		URL("https://github.com/tonouchi510/goa2-sample/wiki")
+		URL("https://github.com/andmorefine/goa2-sample/wiki")
 	})
 
 	cors.Origin("/.*localhost.*/", func() {

@@ -3,7 +3,7 @@
 // goa2-sample HTTP client CLI support package
 //
 // Command:
-// $ goa gen github.com/tonouchi510/goa2-sample/design
+// $ goa gen github.com/andmorefine/goa2-sample/design
 
 package cli
 
@@ -13,10 +13,10 @@ import (
 	"net/http"
 	"os"
 
-	securedc "github.com/tonouchi510/goa2-sample/gen/http/secured/client"
-	statsc "github.com/tonouchi510/goa2-sample/gen/http/stats/client"
-	usersc "github.com/tonouchi510/goa2-sample/gen/http/users/client"
-	vironc "github.com/tonouchi510/goa2-sample/gen/http/viron/client"
+	securedc "github.com/andmorefine/goa2-sample/gen/http/secured/client"
+	statsc "github.com/andmorefine/goa2-sample/gen/http/stats/client"
+	usersc "github.com/andmorefine/goa2-sample/gen/http/users/client"
+	vironc "github.com/andmorefine/goa2-sample/gen/http/viron/client"
 	goa "goa.design/goa"
 	goahttp "goa.design/goa/http"
 )

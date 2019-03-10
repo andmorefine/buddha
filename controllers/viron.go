@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/tonouchi510/goa2-sample/gen/viron"
+	"github.com/andmorefine/goa2-sample/gen/viron"
 )
 
 // viron service example implementation.

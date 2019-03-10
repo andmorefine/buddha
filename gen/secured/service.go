@@ -3,14 +3,14 @@
 // secured service
 //
 // Command:
-// $ goa gen github.com/tonouchi510/goa2-sample/design
+// $ goa gen github.com/andmorefine/goa2-sample/design
 
 package secured
 
 import (
 	"context"
 
-	securedviews "github.com/tonouchi510/goa2-sample/gen/secured/views"
+	securedviews "github.com/andmorefine/goa2-sample/gen/secured/views"
 	"goa.design/goa/security"
 )
 

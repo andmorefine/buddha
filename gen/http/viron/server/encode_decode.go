@@ -3,7 +3,7 @@
 // viron HTTP server encoders and decoders
 //
 // Command:
-// $ goa gen github.com/tonouchi510/goa2-sample/design
+// $ goa gen github.com/andmorefine/goa2-sample/design
 
 package server
 
@@ -11,7 +11,7 @@ import (
 	"context"
 	"net/http"
 
-	vironviews "github.com/tonouchi510/goa2-sample/gen/viron/views"
+	vironviews "github.com/andmorefine/goa2-sample/gen/viron/views"
 	goahttp "goa.design/goa/http"
 )
 

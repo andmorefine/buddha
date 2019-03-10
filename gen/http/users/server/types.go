@@ -3,15 +3,15 @@
 // users HTTP server types
 //
 // Command:
-// $ goa gen github.com/tonouchi510/goa2-sample/design
+// $ goa gen github.com/andmorefine/goa2-sample/design
 
 package server
 
 import (
 	"unicode/utf8"
 
-	users "github.com/tonouchi510/goa2-sample/gen/users"
-	usersviews "github.com/tonouchi510/goa2-sample/gen/users/views"
+	users "github.com/andmorefine/goa2-sample/gen/users"
+	usersviews "github.com/andmorefine/goa2-sample/gen/users/views"
 	goa "goa.design/goa"
 )
 

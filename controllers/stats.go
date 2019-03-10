@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	stats "github.com/tonouchi510/goa2-sample/gen/stats"
+	stats "github.com/andmorefine/goa2-sample/gen/stats"
 )
 
 // stats service example implementation.

@@ -3,7 +3,7 @@
 // users HTTP client CLI support package
 //
 // Command:
-// $ goa gen github.com/tonouchi510/goa2-sample/design
+// $ goa gen github.com/andmorefine/goa2-sample/design
 
 package client
 
@@ -13,7 +13,7 @@ import (
 	"strconv"
 	"unicode/utf8"
 
-	users "github.com/tonouchi510/goa2-sample/gen/users"
+	users "github.com/andmorefine/goa2-sample/gen/users"
 	goa "goa.design/goa"
 )
 

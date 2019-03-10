@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	cli "github.com/tonouchi510/goa2-sample/gen/http/cli/goa2_sample"
+	cli "github.com/andmorefine/goa2-sample/gen/http/cli/goa2_sample"
 	goahttp "goa.design/goa/http"
 )
 

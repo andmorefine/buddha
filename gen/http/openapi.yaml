@@ -3,9 +3,9 @@ info:
   title: SampleAPI
   description: goa2 sample code.
   contact:
-    name: tonouchi510
+    name: andmorefine
     email: tonouchi27@gmail.com
-    url: https://github.com/tonouchi510/goa2-sample/issues
+    url: https://github.com/andmorefine/goa2-sample/issues
   version: "1.0"
 host: localhost:8000
 consumes:
@@ -1476,4 +1476,4 @@ securityDefinitions:
     in: header
 externalDocs:
   description: wiki
-  url: https://github.com/tonouchi510/goa2-sample/wiki
+  url: https://github.com/andmorefine/goa2-sample/wiki

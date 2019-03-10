@@ -3,7 +3,7 @@
 // viron HTTP server
 //
 // Command:
-// $ goa gen github.com/tonouchi510/goa2-sample/design
+// $ goa gen github.com/andmorefine/goa2-sample/design
 
 package server
 
@@ -12,7 +12,7 @@ import (
 	"net/http"
 	"regexp"
 
-	viron "github.com/tonouchi510/goa2-sample/gen/viron"
+	viron "github.com/andmorefine/goa2-sample/gen/viron"
 	goa "goa.design/goa"
 	goahttp "goa.design/goa/http"
 	"goa.design/plugins/cors"
