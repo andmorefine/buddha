@@ -1,0 +1,21 @@
+version: "{build}"
+
+os: Windows Server 2012 R2
+
+environment:
+  GOPATH: C:\gopath
+
+clone_folder: c:\gopath\src\goa.design\goa
+
+install:
+  - go version
+  - copy c:\MinGW\bin\mingw32-make.exe c:\MinGW\bin\make.exe
+  - set PATH=%PATH%;c:\MinGW\bin;%GOPATH%\bin
+
+build_script:
+  - make travis
+  - if "%APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH%" == "" ( make test-plugins GOA_BRANCH="%APPVEYOR_REPO_BRANCH%" ) else ( make test-plugins GOA_BRANCH="%APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH%" )
+
+test: off
+
+deploy: off

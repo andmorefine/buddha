@@ -23,7 +23,7 @@ import (
 	users "github.com/andmorefine/buddha/gen/users"
 	viron "github.com/andmorefine/buddha/gen/viron"
 	goahttp "goa.design/goa/http"
-	"goa.design/goa/http/middleware"
+	middleware "goa.design/goa/http/middleware"
 )
 
 func main() {
